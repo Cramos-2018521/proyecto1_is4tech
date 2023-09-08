@@ -1,0 +1,7 @@
+<form>
+    <label for="inputField">Ingresa un valor:</label>
+    <input type="text" id="inputField" [(ngModel)]="inputValue" name="inputValue">
+  </form>
+  <p>Valor actual: {{ inputValue }}</p>
+  <button (click)="redirectToParamUpdate()">Redireccionar a ParamUpdateComponent</button>
+  
