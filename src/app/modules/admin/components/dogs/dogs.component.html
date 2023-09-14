@@ -15,5 +15,14 @@
         class="form-control mt-2"
       ></textarea>
     </div>
+    <div appHighlightOnHover [highlightColor]="'rgb(255, 0, 0)'">Elemento para resaltar en hover</div>
+    <input type="text" appCommaSeparate>
+    <p appCopyToClipboard>
+      Este texto se copiará al hacer clic en el ícono de copiar: <i class="fa fa-copy"></i>
+    </p>
+    <p>
+      {{ 'Por fin hoy es viernes texto' | substring: 12 }}
+    </p>
+    
   </div>
 </section>

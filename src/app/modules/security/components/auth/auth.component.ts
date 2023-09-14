@@ -1,5 +1,8 @@
+// Angular
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+// Third Parties
 import {
   GoogleLoginProvider,
   SocialAuthService,
@@ -12,26 +15,29 @@ import {
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  user: SocialUser | null = null;
+  user?: SocialUser;
+  loggedIn?: boolean;
 
   constructor(
     private authService: SocialAuthService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.authService.authState.subscribe((user) => {
       this.user = user;
-      const idToken = user?.idToken || '';
-      localStorage.setItem('Bearer', idToken);
+      this.loggedIn = user != null;
 
-      if (idToken) {
-        this.router.navigate(['/dogs']);
+      localStorage.setItem('Bearer', user?.idToken || '');
+
+      const storedToken = localStorage.getItem('Bearer');
+      if (storedToken) {
+        this.router.navigate(['/']);
       }
     });
   }
 
-  loginWithGoogle(): void {
+  loginWithGoogle() {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 }

@@ -8,21 +8,21 @@ import { authGuard, loginGuard } from '../security/guards/auth.guard';
 import { SecurityModule } from '../security/security.module';
 import { DogsComponent } from './components/dogs/dogs.component';
 import { LoginComponent } from './components/login/login.component';
-import { FormComponent } from '../../form/form.component';
-import { ParamUpdateComponent } from '../../param-update/param-update.component';
+import { FormComponent } from './components/form/form.component';
+import { ParamUpdateComponent } from './components/param-update/param-update.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/logi', pathMatch: 'full' },
   { path: 'logi', component: LoginComponent },
   { path: 'form', component: FormComponent },
   { path: 'param-update', component: ParamUpdateComponent },
+  { path: 'formulario', component: FormularioComponent },
   { path: 'dogs', component: DogsComponent, canActivate: [authGuard] },
   {
     path: 'login',
     loadChildren: () =>
-      import('src/app/modules/security/security.module').then(
-        (m) => m.SecurityModule
-      ),
+      import('../security/security.module').then((m) => m.SecurityModule),
     canActivate: [loginGuard]
   }
 ];

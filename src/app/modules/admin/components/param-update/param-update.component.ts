@@ -14,7 +14,7 @@ export class ParamUpdateComponent implements OnDestroy {
 
   constructor() {
     console.log('Componente ParamUpdate inicializado.');
-    // Simular actualización después de 30 segundos
+    // actualización después de 30 segundos
     this.subscription = timer(30000).subscribe(() => {
       this.updatedValue = 'Valor actualizado después de 30 segundos';
       console.log('Valor actualizado:', this.updatedValue);
